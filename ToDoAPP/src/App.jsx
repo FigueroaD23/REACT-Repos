@@ -1,7 +1,7 @@
 import {useState,useEffect} from "react"
 import logoReact from "../src/logo.svg"
 import {Tarea} from "./components/Tarea.jsx"
-export default App = ()=> {
+const App = ()=> {
   const [nuevaTarea, setNuevaTarea] = useState("") //estado del valor del input llamado "tarea"
   const [alerta, setAlerta] = useState(false)
   const [tareas, setTareas] = useState([]) // arreglo ccon todas las tareas que se vayan acumulando
@@ -18,11 +18,11 @@ export default App = ()=> {
   
   const agregarTarea = ()=>{    
     if(nuevaTarea.length<=0){setAlerta(true); return;}
-    setTareas([{nombre:nuevaTarea,estado:true},...tareas]) 
+    /* setTareas([{nombre:nuevaTarea,estado:true},...tareas])  */
     setAlerta(false)
-    /*  setTareas((previo) => {
-      return [...previo,{nombre:nuevaTarea,estado:true}]
-    }) */
+     setTareas((previo) => {
+      return [{nombre:nuevaTarea,estado:true},...previo]
+    })
     setNuevaTarea('')  
   }
   const handleKeyUp = (e)=>{if(e.keyCode===13)agregarTarea()}
@@ -66,3 +66,4 @@ export default App = ()=> {
     </>    
   )
 }
+export default App
