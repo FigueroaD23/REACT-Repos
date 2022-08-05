@@ -22,6 +22,7 @@ const App = ()=> {
   
   const agregarTarea = ()=>{    
     if(nuevaTarea.length<=0){setAlerta(true); return;}
+<<<<<<< HEAD
     setAlerta(false)
     //este tabién funciona correctamente
     //setTareas([{nombre:nuevaTarea,estado:true},...tareas]) 
@@ -29,6 +30,14 @@ const App = ()=> {
       return [...previo,{nombre:nuevaTarea,estado:true}]
     })
     setNuevaTarea('')      
+=======
+    /* setTareas([{nombre:nuevaTarea,estado:true},...tareas])  */
+    setAlerta(false)
+     setTareas((previo) => {
+      return [{nombre:nuevaTarea,estado:true},...previo]
+    })
+    setNuevaTarea('')  
+>>>>>>> develop
   }
   const handleKeyUp = (e)=>{if(e.keyCode===13)agregarTarea()}
 
@@ -73,5 +82,8 @@ const App = ()=> {
     </>    
   )
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 export default App
