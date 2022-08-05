@@ -1,47 +1,54 @@
 import {useState,useEffect} from "react"
 import logoReact from "../src/logo.svg"
 import {Tarea} from "./components/Tarea.jsx"
-export default App = ()=> {
+const App = ()=> {
   const [nuevaTarea, setNuevaTarea] = useState("") //estado del valor del input llamado "tarea"
   const [alerta, setAlerta] = useState(false)
   const [tareas, setTareas] = useState([]) // arreglo ccon todas las tareas que se vayan acumulando
-  useEffect(() => {
+  useEffect(() => {    
     let datosLS = JSON.parse(localStorage.getItem("datos")) 
-    if(datosLS===null) setTareas([])
-    else setTareas([...datosLS])  
-     console.log("tareakjhs",tareas)         
+    if(datosLS===null || datosLS.length==0) return
+    else
+    setTareas([...datosLS])            
   }, [])
-  useEffect(() => {
-    console.log("useEffect tareas de act",tareas)
-    localStorage.setItem("datos",JSON.stringify(tareas))        
+  useEffect(() => {      
+    if(tareas.length>0)
+      localStorage.setItem("datos",JSON.stringify(tareas))  
+    if(tareas.length <=0)
+      localStorage.setItem("datos",JSON.stringify([]))  
+    console.log("tareas useffect", tareas)
   }, [tareas])
+  
   
   const agregarTarea = ()=>{    
     if(nuevaTarea.length<=0){setAlerta(true); return;}
-    setTareas([{nombre:nuevaTarea,estado:true},...tareas]) 
     setAlerta(false)
-    /*  setTareas((previo) => {
+    //este tabién funciona correctamente
+    //setTareas([{nombre:nuevaTarea,estado:true},...tareas]) 
+     setTareas((previo) => {
       return [...previo,{nombre:nuevaTarea,estado:true}]
-    }) */
-    setNuevaTarea('')  
+    })
+    setNuevaTarea('')      
   }
   const handleKeyUp = (e)=>{if(e.keyCode===13)agregarTarea()}
 
-  const limpiarTodo = ()=>{setTareas([])}
+  const limpiarTodo = ()=>{
+    setTareas([])
+    localStorage.setItem("datos",JSON.stringify([]))        
+  }
 
   const editarTarea = (id)=>{
-    console.log("tareas",tareas) 
     const todo = tareas[id]
     todo.estado = !todo.estado;
     const newTodos = [...tareas];
     newTodos[id] = todo;
-    setTareas(newTodos);
+    setTareas(newTodos);    
   }
 
   const eliminarTarea = (id)=>{    
-    const newTodos = [...tareas]
-    newTodos.splice(id,1)
-    setTareas(newTodos)
+    let newTodos = [...tareas]
+    newTodos.splice(id,1)    
+    setTareas(newTodos)        
   }
 
   return (
@@ -66,3 +73,5 @@ export default App = ()=> {
     </>    
   )
 }
+
+export default App
