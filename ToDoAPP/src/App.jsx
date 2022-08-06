@@ -5,31 +5,31 @@ const App = ()=> {
   const [nuevaTarea, setNuevaTarea] = useState("") //estado del valor del input llamado "tarea"
   const [alerta, setAlerta] = useState(false)
   const [tareas, setTareas] = useState([]) // arreglo ccon todas las tareas que se vayan acumulando
-  useEffect(() => {    
-    let datosLS = JSON.parse(localStorage.getItem("datos")) 
-    if(datosLS===null || datosLS.length==0) return
-    else
-    setTareas([...datosLS])            
-  }, [])
-  useEffect(() => {      
+  useEffect(()=>{
+    if(localStorage.getItem("datos")){
+        const storedList = JSON.parse(localStorage.getItem("datos"));
+        setTareas(storedList);
+    }
+},[])
+  /* useEffect(() => {      
     if(tareas.length>0)
       localStorage.setItem("datos",JSON.stringify(tareas))  
     if(tareas.length <=0)
       localStorage.setItem("datos",JSON.stringify([]))  
     console.log("tareas useffect", tareas)
-  }, [tareas])
+  }, [tareas]) */
   
   
   const agregarTarea = ()=>{    
     if(nuevaTarea.length<=0){setAlerta(true); return;}
-    setAlerta(false)
-    //este tabién funciona correctamente
-    //setTareas([{nombre:nuevaTarea,estado:true},...tareas]) 
-     setTareas((previo) => {
-      return [...previo,{nombre:nuevaTarea,estado:true}]
-    })
+    setAlerta(false)    
+    const newTask = { id: new Date().getTime().toString(), title: nuevaTarea };
+    setTareas([...tareas,newTask])     
+    localStorage.setItem("datos", JSON.stringify([...tareas, newTask]));
     setNuevaTarea('')      
-  }
+  } 
+
+
   const handleKeyUp = (e)=>{if(e.keyCode===13)agregarTarea()}
 
   const limpiarTodo = ()=>{
