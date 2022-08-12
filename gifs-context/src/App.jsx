@@ -1,11 +1,13 @@
 import { useState } from "react"
 import ListOfGifs from "./components/ListOfGifs";
+import {Navbar} from "./components/Navbar";
+import { GifEspecifico } from "./components/GifEspecifico";
+import Home from "./pages/Home";
+
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link,
-  NavLink
+  Route,  
 } from "react-router-dom";
 {/* <button onClick={()=>{setKeyWord("spongebob");console.log("hola")}}>incrementar</button>      */}
 
@@ -13,18 +15,12 @@ function App() {
   const [keyword, setKeyWord] = useState('goku'); 
   return (
     <Router>
+      <Navbar/>        
       <div className="container">
-        <nav>
-          <NavLink to="/gif/barbie">Barbie</NavLink>
-          <NavLink to="/gif/Gears of war">Gears of war</NavLink>
-          <NavLink to="/gif/"></NavLink>
-          <NavLink to="/gif/"></NavLink>
-          <NavLink to="/gif/"></NavLink>
-        </nav>
-        <hr />
         <Switch>
-          <Route path="/" exact>HOME</Route>
-          <Route path="/gif/:keyword" component={ListOfGifs}/>
+          <Route path="/" exact component={Home}/>
+          <Route path="/search/:keyword" component={ListOfGifs}/>
+          <Route path="/gif/:id" component={GifEspecifico}/>
         </Switch>
       </div>    
     </Router>         

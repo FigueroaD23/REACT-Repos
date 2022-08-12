@@ -1,18 +1,7 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+body{
+  background: #e6e6e6;
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container{
@@ -20,39 +9,79 @@
   margin: 0 auto;
   max-width: 1200px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   gap:30px;
   flex-direction: row;
   flex-wrap: wrap;  
 }
-.gif-container{
-  width: 90%;
-  display: flex;
-
-
-}
 .gif{
-  padding:10px;
-  width: 150px;
+  cursor:pointer;
+  background: white;
+  width: 200px;;
+  padding:10px;  
   display: flex;
-  flex-direction: column;
-  border: 1px solid white;  
+  flex-direction: column;  
   align-items: center;
   justify-content: center;
   border-radius: 10px;
   text-align: center;
+  text-decoration: none;
+  transition: transform 200ms ease, font-size 200ms ease;  
+}
+.gif img{
+  width: 100%;
+  object-fit: cover;
+  height: 100px;
+  border-radius: 10px;;
 }
 
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.gif p{
+  color:black;
+  margin:5px 0;
+  font-size: 0.7em;  
 }
+
+.gif:hover{
+  transform: scale(1.05);  
+  box-shadow: 0px 10px 20px 10px rgba(143, 82, 255, 0.15);
+  font-weight: bold;
+}
+
+.nav-container{
+  position: sticky;
+  top:0;  
+  z-index: 2;
+  margin:0 0  20px 0;
+  background-color: #7089ce;
+  height: auto;
+}
+
+nav{  
+  height: 50px;
+  padding:10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;  
+  box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.3);
+}
+nav a{
+margin:0 10px 0 10px;
+padding:10px;
+color:white;
+text-decoration: none;
+font-weight: bold;
+transition: all 200ms;
+}
+nav a:hover {  
+  border-bottom:3px solid #eed6ec;  
+}
+
+.nav-active{    
+  border-radius: 10px;  
+  font-size: 1.1rem;
+  background-color: white;
+  color:#242424;
+  border: none!important;
+}
+
