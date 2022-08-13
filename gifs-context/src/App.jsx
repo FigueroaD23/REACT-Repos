@@ -1,4 +1,4 @@
-import { useState } from "react"
+
 import ListOfGifs from "./components/ListOfGifs";
 import {Navbar} from "./components/Navbar";
 import { GifEspecifico } from "./components/GifEspecifico";
@@ -12,7 +12,6 @@ import {
 {/* <button onClick={()=>{setKeyWord("spongebob");console.log("hola")}}>incrementar</button>      */}
 
 function App() {    
-  const [keyword, setKeyWord] = useState('goku'); 
   return (
     <Router>
       <Navbar/>        

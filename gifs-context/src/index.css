@@ -15,7 +15,8 @@ body{
   flex-wrap: wrap;  
 }
 .gif{
-  cursor:pointer;
+  position:relative;  
+  cursor:pointer;  
   background: white;
   width: 200px;;
   padding:10px;  
@@ -26,9 +27,22 @@ body{
   border-radius: 10px;
   text-align: center;
   text-decoration: none;
-  transition: transform 200ms ease, font-size 200ms ease;  
+  transition:transform 200ms ease, font-size 200ms ease;  
 }
-.gif img{
+.gif2{      
+  cursor:pointer;
+  background: white;
+  width: 200px;;
+  padding:10px;  
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;  
+}
+.gif img{  
   width: 100%;
   object-fit: cover;
   height: 100px;
@@ -45,6 +59,22 @@ body{
   transform: scale(1.05);  
   box-shadow: 0px 10px 20px 10px rgba(143, 82, 255, 0.15);
   font-weight: bold;
+}
+
+.visible{
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+}
+@keyframes fadeIn {
+  0%{
+    top:20px;
+    opacity:0;
+  }
+  100%{
+    top:0;
+    opacity:1;
+  }
+  
 }
 
 .nav-container{
@@ -84,4 +114,3 @@ nav a:hover {
   color:#242424;
   border: none!important;
 }
-

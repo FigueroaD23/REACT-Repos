@@ -10,7 +10,7 @@ export const GifEspecifico = () => {
       getGifEspecifico({id}).then((gifAPI)=>{
         setGif(gifAPI)   
       })
-}, [id])
+    }, [id])
     
 
   return (
