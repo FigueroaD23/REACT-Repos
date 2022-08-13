@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import getGifsService from "../services/getGifsService";
 import Gif from "./Gif";
 import {useParams} from 'react-router-dom'
-import Skeleton from './Skeleton/Skeleton';
+import Spinner from './Spinner/Spinner';
 
 const ListOfGifs = (props) => {    
     const {keyword} = useParams()    
@@ -20,7 +20,7 @@ const ListOfGifs = (props) => {
     },[keyword])
   return (    
     <>    
-    {loading?<Skeleton/>:gifs.map(({url,id,title})=>{
+    {loading?<Spinner/>:gifs.map(({url,id,title})=>{
                 return(<Gif url={url} id={id} title={title} key={id} loading={loading}/>)
             })}
         

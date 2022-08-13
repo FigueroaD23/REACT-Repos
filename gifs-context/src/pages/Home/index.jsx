@@ -1,7 +1,10 @@
-import Skeleton from "../../components/Skeleton/Skeleton";
+import Spinner from "../../components/Spinner/Spinner";
+
 const Home = () => {
   return (  
-    <div>Home</div>        
+    <div>
+      <Spinner></Spinner>
+    </div>        
   )
 }
 

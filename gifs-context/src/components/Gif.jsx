@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import "./Skeleton/Skeleton.css"
+import "./Spinner/Spinner.css"
 const Gif = ({url,id,title,loading}) => {
   console.log(loading)
   return (
