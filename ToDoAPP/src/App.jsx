@@ -6,26 +6,30 @@ const App = ()=> {
   const [alerta, setAlerta] = useState(false)
   const [tareas, setTareas] = useState([]) // arreglo ccon todas las tareas que se vayan acumulando
   useEffect(()=>{
-    if(localStorage.getItem("datos")){
-        const storedList = JSON.parse(localStorage.getItem("datos"));
-        setTareas(storedList);
-    }
+    let datosLS = JSON.parse(localStorage.getItem("datos")) 
+    if(datosLS===null || datosLS.length==0) return
+    else
+    setTareas([...datosLS]) 
 },[])
-  /* useEffect(() => {      
+  useEffect(() => {      
     if(tareas.length>0)
       localStorage.setItem("datos",JSON.stringify(tareas))  
     if(tareas.length <=0)
       localStorage.setItem("datos",JSON.stringify([]))  
     console.log("tareas useffect", tareas)
-  }, [tareas]) */
+  }, [tareas])
   
   
   const agregarTarea = ()=>{    
     if(nuevaTarea.length<=0){setAlerta(true); return;}
     setAlerta(false)    
-    const newTask = { id: new Date().getTime().toString(), title: nuevaTarea };
-    setTareas([...tareas,newTask])     
-    localStorage.setItem("datos", JSON.stringify([...tareas, newTask]));
+    //const newTask = {nombre: nuevaTarea, estado:true };
+    //este tabién funciona correctamente
+    //setTareas([{nombre:nuevaTarea,estado:true},...tareas]) 
+    setTareas((previo) => {
+      return [...previo,{nombre:nuevaTarea,estado:true}]
+    })
+    //localStorage.setItem("datos", JSON.stringify([...tareas, newTask]));
     setNuevaTarea('')      
   } 
 
