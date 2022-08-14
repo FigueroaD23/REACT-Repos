@@ -1,8 +1,8 @@
 
-import ListOfGifs from "./components/ListOfGifs";
-import {Navbar} from "./components/Navbar";
-import { GifEspecifico } from "./components/GifEspecifico";
-import Home from "./pages/Home";
+import ListOfGifs from "./components/ListOfGifs/ListOfGifs";
+import {Navbar} from "./components/Navbar/Navbar";
+import { GifEspecifico } from "./components/GifEspecifico/GifEspecifico";
+import Home from "./pages/Home/indexHome";
 
 import {
   BrowserRouter as Router,

@@ -6,9 +6,9 @@ export default async function({id = ""} = {}){
     try {
         const dataFirst = await fetch(apiURL)
         const gifEspecifico = await dataFirst.json()
-        const {images,title,id} = gifEspecifico.data
-        const {url} = gifEspecifico.data.images.fixed_width_downsampled
-        return {url,images,title,id}
+        /* const {images,title,id} = gifEspecifico.data
+        const {url} = gifEspecifico.data.images.fixed_width_downsampled */
+        return gifEspecifico.data
     } catch (e) {
         return e
     }
