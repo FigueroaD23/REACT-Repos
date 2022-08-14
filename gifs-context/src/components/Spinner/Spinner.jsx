@@ -3,7 +3,7 @@ import "./Spinner.css"
 const Spinner = () => {  
   return (    
     <div style={{height:'200vh'}}>
-      <div class="lds-ripple">
+      <div className="lds-ripple">
         <div>
         </div>
 

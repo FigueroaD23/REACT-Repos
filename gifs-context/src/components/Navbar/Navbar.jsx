@@ -1,7 +1,7 @@
 import {    
     NavLink
   } from "react-router-dom";
-
+import "./Navbar.css"
 export const Navbar = () => {
   const categoriasGif = ["Barbie", "Batman", "Stitch", "GTA", "Fall guys"]
   return (    
