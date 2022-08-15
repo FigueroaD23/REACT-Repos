@@ -2,7 +2,7 @@ import {useEffect, useState,useContext} from 'react'
 import getGifsService from "../services/getGifsService";
 import GifContextdefault from "../context/GifContext";
 
-const useGetGif = ({keyword,limit} = {keyword:null,limit:5}) => {    
+const useGetGif = ({keyword,limit} = {keyword:null,limit:25}) => {    
     const {gifs,setGifs} = useContext(GifContextdefault)            
     const [errorAPI, setError] = useState({mensaje:"",isThereAnyError:false});
     const [loading, setLoading] = useState(false);

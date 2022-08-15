@@ -1,0 +1,13 @@
+.category h2{
+    padding:5px;
+    border-radius: 10px;
+    font-size: medium;
+    background-color: white;
+    display: inline-block;
+    margin:10px;
+
+}
+
+a:visited {
+    color: #00FF00; /* verde */
+    }

@@ -1,6 +1,6 @@
 
 import {Navbar} from "./components/Navbar/Navbar";
-import { GifEspecifico } from "./components/GifEspecifico/GifEspecifico";
+import GifEspecifico from "./pages/EspecificoPorID/indexEspecificoID";
 import Home from "./pages/Home/indexHome";
 import Search from "./pages/Search/indexSearch"
 import { GifsContextProvider } from "./context/GifContext";
