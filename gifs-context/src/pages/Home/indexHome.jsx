@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import useGetGif from "../../hooks/useGetGif";
 import ListOfGifs from "../../components/ListOfGifs/ListOfGifs";
 import Spinner from "../../components/Spinner/Spinner";
-import Category from "../../components/Category/Category";
+import TrendingSearches from "../../components/TrendingSearches/index";
 
 const Home = () => {
   const [searchKey, setSearchKey] = useState("")
@@ -27,7 +27,8 @@ const Home = () => {
       
       <p>Última busqueda</p>
       {loading?<Spinner/>:<ListOfGifs gifs={gifs}/>}
-      <Category name={"Categorias populares"} options={["Batman", "Apex", "NieR Automata"]}/>
+
+      <TrendingSearches/>
     </div>        
   )
 }
