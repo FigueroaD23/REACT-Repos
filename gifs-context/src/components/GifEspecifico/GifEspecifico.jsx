@@ -1,32 +1,27 @@
-import { useState } from 'react';
-import {useEffect} from 'react'
+import { useContext} from 'react';
 import { useParams } from 'react-router-dom'
-import getGifEspecifico from "../../services/getGifEspecifico";
-import Spinner from '../Spinner/Spinner';
+import GifContextdefault from "../../context/GifContext";
+import Gif from "../Gif/Gif";
 
 export const GifEspecifico = () => {
+  const {gifs} = useContext(GifContextdefault)
+  console.log(gifs)
     const {id} = useParams()
-    const [loading, setLoading] = useState(false);
-    const [gif,setGif] = useState([])
-    useEffect(() => {
+    const gifEspecifico = gifs.find((singleGif)=> singleGif.id === id)
+    //const [loading, setLoading] = useState(false);
+    //const [gif,setGif] = useState([])
+    /* useEffect(() => {
       setLoading(true)
       getGifEspecifico({id}).then((gifAPI)=>{
         setGif(gifAPI)   
         setLoading(false)
       })
-    }, [id])
+    }, [id]) */
     
 
   return (
-    <>
-    
-    {
-      loading ? <Spinner/>:
-      <div>      
-      <p>{gif.title}</p>
-      <img width={120} height={80} src={gif.images?.fixed_width_still?.url} alt={`gif de ${gif.title}`} key={gif.id} />        
-    </div>
-  }
-  </>
+    <>   
+      <Gif {...gifEspecifico}/>
+    </>
   )
 }

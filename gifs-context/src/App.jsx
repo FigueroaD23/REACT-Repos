@@ -1,9 +1,9 @@
 
-import ListOfGifs from "./components/ListOfGifs/ListOfGifs";
 import {Navbar} from "./components/Navbar/Navbar";
 import { GifEspecifico } from "./components/GifEspecifico/GifEspecifico";
 import Home from "./pages/Home/indexHome";
-
+import Search from "./pages/Search/indexSearch"
+import { GifsContextProvider } from "./context/GifContext";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,16 +13,20 @@ import {
 
 function App() {    
   return (
+    <GifsContextProvider>
+
     <Router>
       <Navbar/>        
       <div className="container">
         <Switch>
           <Route path="/" exact component={Home}/>
-          <Route path="/search/:keyword" component={ListOfGifs}/>
+          <Route path="/search/:keyword" component={Search}/>
           <Route path="/gif/:id" component={GifEspecifico}/>
         </Switch>
       </div>    
-    </Router>         
+    </Router>  
+           
+    </GifsContextProvider>
   )
 }
 

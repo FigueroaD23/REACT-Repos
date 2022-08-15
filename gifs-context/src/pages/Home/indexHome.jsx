@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import useGetGif from "../../hooks/useGetGif";
+import ListOfGifs from "../../components/ListOfGifs/ListOfGifs";
 import Spinner from "../../components/Spinner/Spinner";
 
 const Home = () => {
   const [searchKey, setSearchKey] = useState("")
-  const history = useHistory()
-  console.log(history)
+  const history = useHistory()  
+  const {loading,errorAPI,gifs} = useGetGif()
+
 
   const handleInputChange = (e)=>{
     setSearchKey(e.target.value)
@@ -20,7 +23,9 @@ const Home = () => {
       <form onSubmit={handleSubmit}>
         <input onChange={handleInputChange} type="text" name="keysearch" id="keysearch" placeholder="Buscar gif"/>
       </form>
-      {searchKey}
+      
+      <p>Última busqueda</p>
+      {loading?<Spinner/>:<ListOfGifs gifs={gifs}/>}
     </div>        
   )
 }

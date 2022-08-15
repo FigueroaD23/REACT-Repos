@@ -8,10 +8,9 @@ body{
   width: 90%;
   margin: 0 auto;
   max-width: 1200px;
-  display: flex;
-  justify-content: space-evenly;
+  display: flex;  
   gap:30px;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;  
 }
 
