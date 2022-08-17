@@ -1,7 +1,8 @@
 import { API_KEY, API_URL, GET_GIF } from "./settings";
 
-export default async function getGifService({keyword,limit} = {keyword:'Morty',limit:10}){    
-    const apiURL = `${API_URL}${GET_GIF}?api_key=${API_KEY}&q=${keyword}&limit=${limit}&offset=0&rating=g&lang=en`
+export default async function getGifService({keyword, limit, page} = {keyword:'Morty',limit:10, page:0}){  
+    let offset = page*limit  
+    const apiURL = `${API_URL}${GET_GIF}?api_key=${API_KEY}&q=${keyword}&limit=${limit}&offset=${offset}&rating=g&lang=en`
     try {
         const dataFirst = await fetch(apiURL)        
         if(dataFirst.status == 401) throw "Error de autorización, checar api KEY"

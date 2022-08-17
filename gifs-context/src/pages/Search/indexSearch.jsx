@@ -4,8 +4,12 @@ import Spinner from '../../components/Spinner/Spinner';
 import useGetGif from "../../hooks/useGetGif";
 
 const indexSearch = () => {    
+  const handleNextPage = ()=>{
+    console.log("siguiente página")
+    setPage((prev)=>{return prev+1})
+  }
   const {keyword} = useParams()  
-  const {loading,errorAPI, gifs} = useGetGif({keyword,limit:30})
+  const {loading,loadingNextPage,errorAPI, gifs, setPage} = useGetGif({keyword,limit:30})
   //const {keyword} = props.match.params  //este tambien sirve
   if(errorAPI.isThereAnyError){
     return (<p>Error: {errorAPI.mensaje}</p>)    
@@ -14,8 +18,8 @@ const indexSearch = () => {
     return (    
       <>    
       <h3>{keyword}</h3>
-      {loading?<Spinner/>:<ListOfGifs gifs={gifs}/>}
-          
+      {loading || loadingNextPage?<Spinner/>:<ListOfGifs gifs={gifs}/>}
+      <button onClick={handleNextPage}>Más resultados</button>
       </>
     )
   }  

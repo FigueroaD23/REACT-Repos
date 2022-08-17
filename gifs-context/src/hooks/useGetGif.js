@@ -3,12 +3,14 @@ import getGifsService from "../services/getGifsService";
 import GifContextdefault from "../context/GifContext";
 
 const useGetGif = ({keyword,limit} = {keyword:'',limit:25}) => {    
+    const [page, setPage] = useState(0)
     const {gifs,setGifs} = useContext(GifContextdefault)            
     const [errorAPI, setError] = useState({mensaje:"",isThereAnyError:false});
     const [loading, setLoading] = useState(false);
+    const [loadingNextPage, setLoadingNextPage] = useState(false);
+    let keywordToUse = keyword || localStorage.getItem("LastKeyUsed");
 
     useEffect(()=>{    
-        let keywordToUse = keyword || localStorage.getItem("LastKeyUsed");
         if(keywordToUse==null) keywordToUse = "random"        
         setLoading(true)
         getGifsService({keyword:keywordToUse,limit})
@@ -27,12 +29,22 @@ const useGetGif = ({keyword,limit} = {keyword:'',limit:25}) => {
           console.log(e)
           setError({mensaje:e,isThereAnyError:true})
         })
-    },[keyword])
+    },[keyword,setGifs, keywordToUse])
 
+    useEffect(() => {
+      if(page===0) return
+      setLoadingNextPage(true)
+      getGifsService({keyword:keywordToUse,limit,page})
+        .then((gifsAPI)=>{
+          setGifs(prev => prev.concat(gifsAPI)); console.log(gifs)
+          setLoadingNextPage(false)
+        })
+    }, [page])
+    
 
 
   
-    return {loading,errorAPI,gifs}
+    return {loading,loadingNextPage,errorAPI,gifs,setPage}
 }
 
 export default useGetGif
