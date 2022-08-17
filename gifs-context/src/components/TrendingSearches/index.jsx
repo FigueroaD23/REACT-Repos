@@ -1,46 +1,18 @@
-import React, { useState, useEffect} from 'react'
-import Category from '../Category/Category'
-import getTrendingSearches from "../../services/getTrendingSearches";
-import "../Gif/Gif.css"
-const TrendingSearches = () => {
-    const [trends, setTrendings] = useState(["a","b"])    
-    useEffect(() => {
-      getTrendingSearches()
-      .then((trendsAPI)=>{
-        console.log(trendsAPI)
-        setTrendings(trendsAPI.data)
-      })      
-
-    },[])
-    
-  return (
-  <Category name={"Desde la API"} options={trends}/>
+/* Este es el que va a devolver el lazy loading, ara una importación dinámica en caso de ser necesitada */
+import { lazy , Suspense} from "react";
+import useInterObsCustomHook from "../../hooks/useInterObserver";
+/* Aquí se devuelve el import dinamico dle componente deseado a utilizar, devulve el import dinámico
+es asincrono y devulve una promesa, entonces el import() descarga el componente solo cuando lo va a usar  */
+const TrendingSearches = lazy(
+  ()=>import("./TrendingLazy")
   )
-}
 
-export default function LazyTrending(){
-  const [show, setShow] = useState(false)
-
-  useEffect(() => {
-    const onChange = (entries)=>{      
-      const elemento =  entries[0]
-      if(elemento.isIntersecting){
-        setShow(true)
-        document.getElementById("LazyTrending").classList.remove("visible")
-        
-        console.log( document.getElementById("LazyTrending").classList)
-      }
-    }
-
-    const observer = new IntersectionObserver(onChange,{
-      rootMargin:'10px'
-    })
-
-    observer.observe(document.getElementById("LazyTrending"))
-      
-  },[])
+export default function LazyTrending(){  
+  const {show,refFromHook} = useInterObsCustomHook({distance:'100px'})
   
-  return <div id="LazyTrending">
-    {show?<TrendingSearches/> : null }
+  return <div ref={refFromHook}>
+    <Suspense fallback={null}>
+      {show ? <TrendingSearches/> : null }
+    </Suspense>
   </div>
 }

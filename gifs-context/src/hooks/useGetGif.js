@@ -2,27 +2,27 @@ import {useEffect, useState,useContext} from 'react'
 import getGifsService from "../services/getGifsService";
 import GifContextdefault from "../context/GifContext";
 
-const useGetGif = ({keyword,limit} = {keyword:null,limit:25}) => {    
+const useGetGif = ({keyword,limit} = {keyword:'',limit:25}) => {    
     const {gifs,setGifs} = useContext(GifContextdefault)            
     const [errorAPI, setError] = useState({mensaje:"",isThereAnyError:false});
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{    
-        const keywordTosUe = keyword || localStorage.getItem("LastKeyUsed");
-        console.log(keyword)
+        let keywordToUse = keyword || localStorage.getItem("LastKeyUsed");
+        if(keywordToUse==null) keywordToUse = "random"        
         setLoading(true)
-        getGifsService({keyword:keywordTosUe,limit})
-        .then((gifsAPI)=>{
+        getGifsService({keyword:keywordToUse,limit})
+        .then((gifsAPI)=>{          
           if(!Array.isArray(gifsAPI)){
-            throw "Hubo un problema al conectarse a la API"
+            throw gifsAPI
           }
-          if(gifsAPI.length<=0){
+          if(Array.isArray(gifsAPI) && gifsAPI.length<=0){
             throw "No se encontraron gif con esta palabra buscada"
           }          
           setGifs([])
           setGifs(gifsAPI)
           setLoading(false)
-          localStorage.setItem("LastKeyUsed",keyword)
+          localStorage.setItem("LastKeyUsed",keywordToUse)
         }).catch((e)=>{
           console.log(e)
           setError({mensaje:e,isThereAnyError:true})

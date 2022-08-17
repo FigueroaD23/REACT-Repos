@@ -9,7 +9,8 @@ const Home = () => {
   const [searchKey, setSearchKey] = useState("")
   const history = useHistory()  
   const {loading,errorAPI,gifs} = useGetGif()
-
+  const keywordToUse = '' || localStorage.getItem("LastKeyUsed");
+  console.log("to use",keywordToUse)
 
   const handleInputChange = (e)=>{
     setSearchKey(e.target.value)
@@ -19,14 +20,17 @@ const Home = () => {
     history.push(/search/+searchKey)
     e.preventDefault();
   }
+  if(errorAPI.isThereAnyError) return <h3>{errorAPI.mensaje}</h3>
   return (  
     <div>
       <form onSubmit={handleSubmit}>
         <input onChange={handleInputChange} type="text" name="keysearch" id="keysearch" placeholder="Buscar gif"/>
       </form>
       
-      <p>Última busqueda</p>
-      {loading?<Spinner/>:<ListOfGifs gifs={gifs}/>}
+      <p>Última busqueda: <b>{keywordToUse == null ? "" : keywordToUse}</b></p>
+      <div className="gifs-container" style={{minHeight:"800px"}}>
+        {loading?<Spinner/>:<ListOfGifs gifs={gifs}/>}
+      </div>
 
       <TrendingSearches/>
     </div>        

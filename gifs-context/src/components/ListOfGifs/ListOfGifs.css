@@ -5,5 +5,5 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap:30px;
-    min-height: 100vh;
+    min-height: 800px;
 }

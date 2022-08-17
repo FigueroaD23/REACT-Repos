@@ -13,6 +13,7 @@ const indexSearch = () => {
   if(gifs.length>0){
     return (    
       <>    
+      <h3>{keyword}</h3>
       {loading?<Spinner/>:<ListOfGifs gifs={gifs}/>}
           
       </>
