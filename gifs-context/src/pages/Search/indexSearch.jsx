@@ -9,7 +9,7 @@ const indexSearch = () => {
     setPage((prev)=>{return prev+1})
   }
   const {keyword} = useParams()  
-  const {loading,loadingNextPage,errorAPI, gifs, setPage} = useGetGif({keyword,limit:30})
+  const {loading,loadingNextPage,errorAPI, gifs, setPage} = useGetGif({keyword,limit:10})
   //const {keyword} = props.match.params  //este tambien sirve
   if(errorAPI.isThereAnyError){
     return (<p>Error: {errorAPI.mensaje}</p>)    
