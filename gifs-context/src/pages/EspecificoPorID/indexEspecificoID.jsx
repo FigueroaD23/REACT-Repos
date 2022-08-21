@@ -19,8 +19,8 @@ export default function GifEspecifico() {
     }, [id]) */
     
   return (
-    <>   
+    <div className='ListOfGifs'>
       <Gif {...gifEspecifico}/>
-    </>
+    </div>
   )
 }

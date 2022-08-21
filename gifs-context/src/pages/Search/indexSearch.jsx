@@ -17,8 +17,8 @@ const indexSearch = () => {
   if(gifs.length>0){
     return (    
       <>    
-      <h3>{keyword}</h3>
-      {loading || loadingNextPage?<Spinner/>:<ListOfGifs gifs={gifs}/>}
+      <h3 style={{margin:'0'}}>{keyword}</h3>
+      {loading?<Spinner/>:<ListOfGifs gifs={gifs}/>}
       <button onClick={handleNextPage}>Más resultados</button>
       </>
     )

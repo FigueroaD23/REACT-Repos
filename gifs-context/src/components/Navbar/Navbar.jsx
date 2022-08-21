@@ -3,7 +3,7 @@ import {
   } from "react-router-dom";
 import "./Navbar.css"
 export const Navbar = () => {
-  const categoriasGif = ["Goku", "Batman", "Stitch", "GTA", "Fall guys"]
+  const categoriasGif = ["Goku","Stitch","Fall guys"]
   return (    
     <div className="nav-container">
       <nav>

@@ -1,9 +1,10 @@
 .ListOfGifs{
     width: 100%;
-    display: flex;
+    /* display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
     gap:30px;
-    min-height: 800px;
 }

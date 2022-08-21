@@ -7,7 +7,7 @@ const TrendingSearches = () => {
     getTrendingSearches().then(trendsAPI=>setTrendings(trendsAPI.data))      
   },[])
   
-    return <Category name={"Desde la API"} options={trends}/>  
+    return <Category name={"Busquedas populares"} options={trends}/>  
 }
 
 export default TrendingSearches

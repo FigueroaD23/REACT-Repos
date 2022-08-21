@@ -2,7 +2,7 @@
     position:relative;  
     cursor:pointer;  
     background: white;
-    width: 200px;;
+    /* width: 200px; */
     padding:10px;  
     display: flex;
     flex-direction: column;  
@@ -16,7 +16,7 @@
   .gif img{  
     width: 100%;
     object-fit: cover;
-    height: 100px;
+    height: 200px;
     border-radius: 10px;;
   }
   

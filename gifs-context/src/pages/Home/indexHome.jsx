@@ -24,11 +24,11 @@ const Home = () => {
   return (  
     <div>
       <form onSubmit={handleSubmit}>
-        <input onChange={handleInputChange} type="text" name="keysearch" id="keysearch" placeholder="Buscar gif"/>
+        <input style={{padding:'10px',border:'none',borderRadius:'10px'}} onChange={handleInputChange} type="text" name="keysearch" id="keysearch" placeholder="Buscar gif"/>
       </form>
       
       <p>Última busqueda: <b>{keywordToUse == null ? "" : keywordToUse}</b></p>
-      <div className="gifs-container" style={{minHeight:"800px"}}>
+      <div className="gifs-container" style={{minHeight:"500px"}}>
         {loading?<Spinner/>:<ListOfGifs gifs={gifs}/>}
       </div>
 

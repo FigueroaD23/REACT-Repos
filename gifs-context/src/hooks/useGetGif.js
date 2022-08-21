@@ -2,7 +2,7 @@ import {useEffect, useState,useContext} from 'react'
 import getGifsService from "../services/getGifsService";
 import GifContextdefault from "../context/GifContext";
 
-const useGetGif = ({keyword,limit} = {keyword:'',limit:1}) => {    
+const useGetGif = ({keyword,limit} = {keyword:'',limit:10}) => {    
     const [page, setPage] = useState(0)
     const {gifs,setGifs} = useContext(GifContextdefault)            
     const [errorAPI, setError] = useState({mensaje:"",isThereAnyError:false});
@@ -16,7 +16,7 @@ const useGetGif = ({keyword,limit} = {keyword:'',limit:1}) => {
         getGifsService({keyword:keywordToUse,limit})
         .then((gifsAPI)=>{          
           if(!Array.isArray(gifsAPI)){
-            throw gifsAPI
+            throw "Error al consultar la API"
           }
           if(Array.isArray(gifsAPI) && gifsAPI.length<=0){
             throw "No se encontraron gif con esta palabra buscada"
@@ -26,7 +26,7 @@ const useGetGif = ({keyword,limit} = {keyword:'',limit:1}) => {
           setLoading(false)
           localStorage.setItem("LastKeyUsed",keywordToUse)
         }).catch((e)=>{
-          console.log(e)
+          console.log("error desde el custom hook",e)
           setError({mensaje:e,isThereAnyError:true})
         })
     },[keyword,setGifs, keywordToUse])
