@@ -1,26 +1,31 @@
 import { useState, useEffect, useRef} from 'react'
 
-export default function useCercaPantalla({distance} = {distance:'10px'}){
+export default function useCercaPantalla({ distancia = '100px', externalRef, once = true } = {}){
+  
     const [show, setShow] = useState(false)
     const refFromHook = useRef()
-    useEffect(() => {
+    useEffect(() => { 
+      const element = externalRef? externalRef.current : refFromHook.current
+      console.log(element)
       const observandoFunction = (entries,observer)=>{      
-        const elemento =  entries[0]
-        console.log(elemento.isIntersecting)
-        if(elemento.isIntersecting){
+        const el = entries[0]
+        if (el.isIntersecting) {
+          console.log("está intersect")
           setShow(true)
-          observer.disconnect()
+          once && observer.disconnect()
+        } else {
+          console.log("no está inter", element)
+          !once && setShow(false)
         }
       }
   
       const observer = new IntersectionObserver(observandoFunction,{
-        rootMargin:distance
+        rootMargin:distancia
       })
-  
-      observer.observe(refFromHook.current)
+      if(element) observer.observe(element)
         
-      return()=> observer.disconnect()
-    },[])
+      return()=> observer && observer.disconnect()
+    })
   
     return {show,refFromHook}
   }

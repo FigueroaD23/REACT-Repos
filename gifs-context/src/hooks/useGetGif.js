@@ -4,7 +4,7 @@ import GifContextdefault from "../context/GifContext";
 
 //esta linea es lo mismo que la de abajo pero con otra sintaxis
 //const useGetGif = ({keyword,limit} = {keyword:'',limit:10}) => {    
-const useGetGif = ({keyword='',limit="10"} = {}) => {    
+const useGetGif = ({keyword='',limit="3"} = {}) => {    
     const [page, setPage] = useState(0)
     const {gifs,setGifs} = useContext(GifContextdefault)            
     const [errorAPI, setError] = useState({mensaje:"",isThereAnyError:false});
@@ -34,7 +34,7 @@ const useGetGif = ({keyword='',limit="10"} = {}) => {
     },[keyword,setGifs, keywordToUse])
 
     useEffect(() => {
-      if(page===0) return
+      if(page===0 ) return
       setLoadingNextPage(true)
       getGifsService({keyword:keywordToUse,limit,page})
         .then((gifsAPI)=>{
