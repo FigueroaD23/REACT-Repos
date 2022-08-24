@@ -5,16 +5,13 @@ export default function useCercaPantalla({ distancia = '100px', externalRef, onc
     const [show, setShow] = useState(false)
     const refFromHook = useRef()
     useEffect(() => { 
-      const element = externalRef? externalRef.current : refFromHook.current
-      console.log(element)
+      const element = externalRef? externalRef.current : refFromHook.current      
       const observandoFunction = (entries,observer)=>{      
         const el = entries[0]
-        if (el.isIntersecting) {
-          console.log("está intersect")
+        if (el.isIntersecting) {          
           setShow(true)
           once && observer.disconnect()
-        } else {
-          console.log("no está inter", element)
+        } else {          
           !once && setShow(false)
         }
       }

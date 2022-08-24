@@ -29,7 +29,15 @@ const Home = () => {
       
       <p>Última busqueda: <b>{keywordToUse == null ? "" : keywordToUse}</b></p>
       <div className="gifs-container" style={{minHeight:"500px"}}>
-        {loading?<Spinner/>:<ListOfGifs gifs={gifs}/>}
+        {
+          loading
+          ?
+          <Spinner/>
+          :
+          <>
+            <ListOfGifs gifs={gifs}/>          
+          </>
+        }
       </div>
 
       <TrendingSearches/>

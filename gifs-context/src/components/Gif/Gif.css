@@ -1,6 +1,8 @@
-.gif{
-    position:relative;  
-    cursor:pointer;  
+.gif{  
+    position:relative;      
+    cursor:pointer;
+    opacity:0;
+    top:20px;  
     background: white;
     /* width: 200px; */
     padding:10px;  
@@ -11,7 +13,7 @@
     border-radius: 10px;
     text-align: center;
     text-decoration: none;
-    transition:transform 200ms ease, font-size 200ms ease;  
+    transition:transform 200ms ease, font-size, 200ms ease, opacity 200ms linear;  
   }
   .gif img{  
     width: 100%;
@@ -33,8 +35,10 @@
   }
   
   .visible{
-    animation-name: fadeIn;
-    animation-duration: 0.5s;
+    top:0;
+      opacity:1;
+    /* animation-name: fadeIn;
+    animation-duration: 0.5s; */
   }
   @keyframes fadeIn {
     0%{
