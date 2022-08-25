@@ -31,7 +31,7 @@ const useGetGif = ({keyword='',limit="3"} = {}) => {
           console.log("error desde el custom hook",e)
           setError({mensaje:e,isThereAnyError:true})
         })
-    },[keyword,setGifs, keywordToUse])
+    },[keyword, keywordToUse])
 
     useEffect(() => {
       if(page===0 ) return

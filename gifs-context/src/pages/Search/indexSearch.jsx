@@ -9,7 +9,7 @@ const indexSearch = () => {
   
   const {keyword} = useParams()  
   const escuchador = useRef()
-  const {loading,errorAPI, gifs, setPage} = useGetGif({keyword,limit:50})
+  const {loading,errorAPI, gifs, setPage,loadingNextPage} = useGetGif({keyword,limit:5})
   const {show} = useInterObserver({distancia:'10px', externalRef: loading ? null : escuchador, once:false} )
   
   const debounceHandleNextPage = useCallback(
