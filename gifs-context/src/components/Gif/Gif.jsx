@@ -8,7 +8,7 @@ const Gif = ({url,id,title}) => {
       //setTimeout(()=>{gifRef.current.style.animation = "unset"},200)
       setTimeout(()=>{
         if(gifRef.current!=null)
-        gifRef.current.children[1].style.animation = "unset"
+        gifRef.current.style.animation = "unset"
       },2000)
   }, [])
   
@@ -17,9 +17,9 @@ const Gif = ({url,id,title}) => {
   
   return (
     <>    
-        <Link to={`/gif/${id}`} className={`gif ${show?'visible':null}`} ref={gifRef}>
+        <Link to={`/gif/${id}`} className={`gif ${show?'visible':null}`}>
+            <img className='skeleton'  src={url} alt={`gif de ${title}`} key={id} ref={gifRef}/>
             <p>{title}</p>
-            <img className='skeleton'  src={url} alt={`gif de ${title}`} key={id} />
         </Link> 
     </>
   )

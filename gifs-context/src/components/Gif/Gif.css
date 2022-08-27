@@ -1,4 +1,4 @@
-.gif{  
+.gif{    
     position:relative;      
     cursor:pointer;
     opacity:0;
@@ -13,7 +13,7 @@
     border-radius: 10px;
     text-align: center;
     text-decoration: none;
-    transition:transform 200ms ease, font-size, 200ms ease, opacity 200ms linear;  
+    transition:font-weight 50ms linear,box-shadow 100ms ease,top ease-in-out 200ms, opacity linear 200ms;  
   }
   .gif img{  
     width: 100%;
@@ -28,9 +28,9 @@
     font-size: 0.7em;  
   }
   
-  .gif:hover{
-    transform: scale(1.05);  
-    box-shadow: 0px 10px 20px 10px rgba(143, 82, 255, 0.15);
+  .gif:hover{    
+    transform: scale(1.1);
+    /* box-shadow: 0px 0px 0px 800px rgba(0, 0, 0, 0.282); */
     font-weight: bold;
   }
   

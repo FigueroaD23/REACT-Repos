@@ -9,11 +9,11 @@ const indexSearch = () => {
   
   const {keyword} = useParams()  
   const escuchador = useRef()
-  const {loading,errorAPI, gifs, setPage,loadingNextPage} = useGetGif({keyword,limit:5})
+  const {loading,errorAPI, gifs, setPage,loadingNextPage} = useGetGif({keyword})
   const {show} = useInterObserver({distancia:'10px', externalRef: loading ? null : escuchador, once:false} )
   
   const debounceHandleNextPage = useCallback(
-    ()=>{debounce(setPage((prev)=>{return prev+1}), 1000)
+    ()=>{debounce(setPage((prev)=>{return prev+1}), 2000)
   },[])  
 
   useEffect(() => {
