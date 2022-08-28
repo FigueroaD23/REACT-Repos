@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom"
 import "../Spinner/Spinner.css"
 import "../Gif/Gif.css"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, memo} from "react"
 import useInterObserver from "../../hooks/useInterObserver";
 const Gif = ({url,id,title}) => {    
   useEffect(() => {  
@@ -25,4 +25,6 @@ const Gif = ({url,id,title}) => {
   )
 }
 
-export default Gif
+export default memo(Gif,(prevProps,nextProps) =>{
+  return prevProps.id === nextProps.id
+})
