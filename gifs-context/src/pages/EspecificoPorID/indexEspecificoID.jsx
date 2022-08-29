@@ -28,7 +28,14 @@ export default function GifEspecifico() {
     <>
     <div className='contenedor-idespecifico'>
       <div className='imagenes'>
-        <img src={gif.url} alt="" />
+        <img src={gif.url} alt="" className='imagen-principal'/>
+        <div className='imagenes-array'>
+          <img src={gif.url} alt="" />
+          <img src={gif.url} alt="" />
+          <img src={gif.url} alt="" />
+          <img src={gif.url} alt="" />
+
+        </div>
       </div>
       <div className='descripcion'>
         <h1>{gif.title}</h1>

@@ -17,5 +17,41 @@ body{
 .contenedor-idespecifico{
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));;
+  margin-bottom: 50px;
+  grid-template-columns: repeat(auto-fit,minmax(270px,1fr));  
+}
+
+.imagenes .imagen-principal{
+  width: 100%;
+  max-height: 300px;
+  border-radius: 10px;
+  max-width: 700px;
+}
+
+.imagenes-array{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(50px,1fr));    
+  /* grid-template-columns: repeat(3, 1fr); */
+  /* grid-template-rows: none; */  
+  gap:10px;
+  overflow: hidden;    
+}
+
+.imagenes-array img{
+  width: 100%;
+
+}
+
+.descripcion h1{
+  text-align: center;
+  margin:5px;
+  font-size: 1em;  
+}
+
+
+@media (min-width: 200px) and (max-width: 600px) {
+.descripcion{
+  order: -1;
+}
 }
