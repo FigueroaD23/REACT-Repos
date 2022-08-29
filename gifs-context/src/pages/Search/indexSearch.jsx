@@ -9,12 +9,12 @@ const indexSearch = () => {
   
   const {keyword} = useParams()  
   const escuchador = useRef()
-  const {loading,errorAPI, gifs, setPage,loadingNextPage} = useGetGif({keyword})
+  const {loading,errorAPI, gifs, setPage,loadingNextPage, offset} = useGetGif({keyword})
   const {show} = useInterObserver({distancia:'10px', externalRef: loading ? null : escuchador, once:false} )
   
   const debounceHandleNextPage = useCallback(
     ()=>{debounce(setPage((prev)=>{return prev+1}), 2000)
-  },[])  
+  },[]) 
 
   useEffect(() => {
    if(show) debounceHandleNextPage()        
@@ -32,16 +32,18 @@ const indexSearch = () => {
   if(gifs.length>0){
     return (    
       <>    
-      <h3 style={{margin:'0'}}>{keyword}</h3>
-      {
-        loading
-        ? <Spinner/>
-        : <>          
-            <ListOfGifs gifs={gifs}/>
-            <div style={{height:'80px'}} ref={escuchador}>escuchador</div>
-          </> 
-      }
-      {/* <button onClick={handleNextPage}>Más resultados</button> */}
+        <h3 style={{margin:'0'}}>{offset} resultados para {keyword}</h3>      
+        {
+          loading
+          ? <Spinner/>
+          : <>          
+              <ListOfGifs gifs={gifs}/>
+              <div style={{height:'80px'}} ref={escuchador}>
+                {loadingNextPage==='cargando'?'cargando':<h6 style={{marginTop:'-20px', marginBottom:'0'}}>Mostrando {gifs.length} resultados de {offset}.</h6>}
+              </div>
+            </> 
+        }      
+        {/* <button onClick={handleNextPage}>Más resultados</button> */}
       </>
     )
   }  
