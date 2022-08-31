@@ -1,19 +1,19 @@
 import { useState, memo} from "react";
-
-const SearchForm = ({alhacerSubmit}) => {
+import { useHistory } from "react-router-dom";
+const SearchForm = () => {
     const [searchKey, setSearchKey] = useState("")
-    
-    const handleSubmitProp = (e)=>{        
+    const history = useHistory()
+    const handleSubmit = (e)=>{          
         e.preventDefault()
-        alhacerSubmit({keyword:searchKey})
+        //navegar a otra ruta
+        history.push(`/search/${searchKey}`)
     }
-
-    const handleInputChange = (e)=>{        
+    const handleInputChange = (e)=>{          
         setSearchKey(e.target.value)
     }        
 
     return (
-    <form onSubmit={handleSubmitProp}>
+    <form onSubmit={handleSubmit}>
         <input style={{padding:'10px',border:'none',borderRadius:'10px'}} onChange={handleInputChange} type="text" name="keysearch" id="keysearch" placeholder="Buscar gif"/>
         <button style={{padding:'10px',border:'none',borderRadius:'10px', background:'lightblue', marginLeft:'10px'}}>Buscar</button>
     </form>

@@ -5,6 +5,7 @@ import useGetGif from "../../hooks/useGetGif";
 import useInterObserver from "../../hooks/useInterObserver";
 import { useCallback, useEffect, useRef} from 'react'
 import debounce from "just-debounce-it";
+import SearchForm from "../../components/SearchForm/SearchForm";
 const indexSearch = () => {     
   
   const {keyword} = useParams()  
@@ -27,11 +28,15 @@ const indexSearch = () => {
 
   //const {keyword} = props.match.params  //este tambien sirve
   if(errorAPI.isThereAnyError){
-    return (<p>Error: {errorAPI.mensaje}</p>)    
+    return <>
+      <SearchForm/>
+      <p>Error: {errorAPI.mensaje}</p>
+    </>        
   }
   if(gifs.length>0){
     return (    
       <>    
+      <SearchForm/>
         <h3 style={{margin:'0'}}>{offset} resultados para {keyword}</h3>      
         {
           loading

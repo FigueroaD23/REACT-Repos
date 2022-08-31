@@ -13,20 +13,23 @@ const useGetGif = ({keyword,limit} = { keyword: null }) => {
   const [loadingNextPage, setLoadingNextPage] = useState('');
   let keywordToUse = keyword || localStorage.getItem("LastKeyUsed");
 
-  useEffect(()=>{         
+  useEffect(()=>{       
+    setError({mensaje:"",isThereAnyError:false}) 
       if(gifs.length>0 && page>0) setPage(0)   
       if(keywordToUse==null) keywordToUse = "popular"        
       setLoading(true)
       getGifsService({keyword:keywordToUse,limit})
       .then((gifsAPI)=>{   
-        console.log("offset",gifsAPI.offsetAPI)    
+        setGifs([])
+        console.log("respuesta",gifsAPI)    
         if(gifsAPI.offsetAPI) setOffset(gifsAPI.offsetAPI)
         if(!Array.isArray(gifsAPI.gifsArray)){
           throw "Error al consultar la API"
         }
         if(Array.isArray(gifsAPI.gifsArray) && gifsAPI.gifsArray.length<=0){
+          console.log(gifsAPI.gifsArray)
           throw "No se encontraron gif con esta palabra buscada"
-        }          
+        }
         //setGifs([])
         setGifs(gifsAPI.gifsArray)
         setLoading(false)

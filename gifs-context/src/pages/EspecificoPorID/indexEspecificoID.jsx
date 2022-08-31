@@ -32,8 +32,7 @@ export default function GifEspecifico() {
   if(gif.error) return <h1>{gif.error}</h1>
     
   return (
-    <>
-    {JSON.stringify(gif)}
+    <>    
     <div className='contenedor-idespecifico'>
       <div className='imagenes'>
         <img src={gif.url} alt="" className='imagen-principal'/>
