@@ -1,31 +1,53 @@
-import { useState, memo} from "react";
+import { useState, memo, useReducer} from "react";
 import { useHistory } from "react-router-dom";
-
+const ACTIONS = {
+    UPDATE_KEYWORD:'actualizarKeyWordAndTimes'
+}
 const RATINGS = ["g","pg","pg-13","r"]
 
-const SearchForm = ({initialKeyword=''}) => {
-    console.log("initial",initialKeyword)
+const reducer = (state,{type,payload})=>{
+    switch (type) {
+        case ACTIONS.UPDATE_KEYWORD:
+            return {...state,
+                keyword:payload.keyword,
+                times:state.times + 1
+            }                
+        default:
+            return state
+    }
 
-    const [searchKey, setSearchKey] = useState(initialKeyword)
+}
+
+const SearchForm = ({initialKeyword=''}) => {    
+    const initialState = {
+        keyword:initialKeyword,
+        times:0
+    }
+    /* const [searchKey, setSearchKey] = useState(initialKeyword)
+    const [times, setTimes] = useState(0) */
     const [rating, setRating] = useState(RATINGS[0])
+
+    const [state, dispatch] = useReducer(reducer, initialState)
+    const {keyword:searchKeyword,times} = state
     const history = useHistory()
     const handleSubmit = (e)=>{          
         e.preventDefault()
         //navegar a otra ruta
-        history.push(`/search/${searchKey}/${rating}`)
+        history.push(`/search/${searchKeyword}/${rating}`)
     }
-    const handleInputChange = (e)=>{          
-        setSearchKey(e.target.value)
+    const handleInputChange = (e)=>{   
+        dispatch({type:ACTIONS.UPDATE_KEYWORD,payload:{keyword:e.target.value}})       
+        /* setSearchKey(e.target.value)
+        setTimes(prev=>prev+1) */
     }        
     const handleSelectRating = (e)=>{   
-        console.log(e.target)       
-        console.log(e.target.value)       
         setRating(e.target.value)
     }        
 
     return (
     <form onSubmit={handleSubmit}>
-        <input value={searchKey} style={{padding:'10px',border:'none',borderRadius:'3px'}} onChange={handleInputChange} type="text" name="keysearch" id="keysearch" placeholder="Buscar gif"/>
+        <input value={searchKeyword} style={{padding:'10px',border:'none',borderRadius:'3px'}} onChange={handleInputChange} type="text" name="keysearch" id="keysearch" placeholder="Buscar gif"/>
+        {times}
         <select onChange={handleSelectRating} style={{padding:'10px',border:'none',borderRadius:'3px', marginLeft:'10px'}}>
             <option disabled>Tipo de rating</option>
             {RATINGS.map((ratingMap,index)=>{return(<option key={index} value={ratingMap}>{ratingMap}</option>)})}
