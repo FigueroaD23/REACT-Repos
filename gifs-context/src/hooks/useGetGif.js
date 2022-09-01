@@ -4,7 +4,7 @@ import GifContextdefault from "../context/GifContext";
 
 //esta linea es lo mismo que la de abajo pero con otra sintaxis
 //const useGetGif = ({keyword,limit} = {keyword:'',limit:10}) => {    
-const useGetGif = ({keyword,limit} = { keyword: null }) => {    
+const useGetGif = ({keyword,limit,rating} = { keyword: null }) => {    
   const [page, setPage] = useState(0)
   const [offset, setOffset] = useState(0)
   const {gifs,setGifs} = useContext(GifContextdefault)            
@@ -18,7 +18,7 @@ const useGetGif = ({keyword,limit} = { keyword: null }) => {
       if(gifs.length>0 && page>0) setPage(0)   
       if(keywordToUse==null) keywordToUse = "popular"        
       setLoading(true)
-      getGifsService({keyword:keywordToUse,limit})
+      getGifsService({keyword:keywordToUse,limit,rating})
       .then((gifsAPI)=>{   
         setGifs([])
         console.log("respuesta",gifsAPI)    
@@ -38,7 +38,7 @@ const useGetGif = ({keyword,limit} = { keyword: null }) => {
         console.log("error desde el custom hook",e)
         setError({mensaje:e,isThereAnyError:true})
       })
-  },[keyword, keywordToUse])
+  },[keyword, keywordToUse,rating])
 
   useEffect(() => {         
     console.log("lenght", gifs.length)
@@ -49,7 +49,7 @@ const useGetGif = ({keyword,limit} = { keyword: null }) => {
       return
     }
     setLoadingNextPage('cargando')
-    getGifsService({keyword:keywordToUse,limit,page})
+    getGifsService({keyword:keywordToUse,limit,page,rating})
       .then((gifsAPI)=>{
         setGifs(prev => prev.concat(gifsAPI.gifsArray)); console.log("gifs actuales",gifs)
         setLoadingNextPage('false')

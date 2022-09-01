@@ -8,9 +8,9 @@ import debounce from "just-debounce-it";
 import SearchForm from "../../components/SearchForm/SearchForm";
 const indexSearch = () => {     
   
-  const {keyword} = useParams()  
+  const {keyword,rating = 'g'} = useParams()  
   const escuchador = useRef()
-  const {loading,errorAPI, gifs, setPage,loadingNextPage, offset} = useGetGif({keyword})
+  const {loading,errorAPI, gifs, setPage,loadingNextPage, offset} = useGetGif({keyword,rating})
   const {show} = useInterObserver({distancia:'10px', externalRef: loading ? null : escuchador, once:false} )
   
   const debounceHandleNextPage = useCallback(
@@ -29,14 +29,14 @@ const indexSearch = () => {
   //const {keyword} = props.match.params  //este tambien sirve
   if(errorAPI.isThereAnyError){
     return <>
-      <SearchForm/>
+      <SearchForm initialKeyword={keyword}/>
       <p>Error: {errorAPI.mensaje}</p>
     </>        
   }
   if(gifs.length>0){
     return (    
       <>    
-      <SearchForm/>
+      <SearchForm initialKeyword={keyword}/>
         <h3 style={{margin:'0'}}>{offset} resultados para {keyword}</h3>      
         {
           loading

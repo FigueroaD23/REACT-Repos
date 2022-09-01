@@ -20,7 +20,7 @@ function App() {
       <div className="container">
         <Switch>
           <Route path="/" exact component={Home}/>
-          <Route path="/search/:keyword" component={Search}/>
+          <Route path="/search/:keyword/:rating?" component={Search}/>
           <Route path="/gif/:id" component={GifEspecifico}/>
         </Switch>
       </div>    

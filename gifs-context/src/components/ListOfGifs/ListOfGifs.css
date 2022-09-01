@@ -5,6 +5,13 @@
     flex-direction: row;
     flex-wrap: wrap; */
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
     gap:10px;
+}
+
+
+@media (min-width: 200px) and (max-width: 600px) {
+    .ListOfGifs{
+        grid-template-columns: repeat(auto-fit,minmax(160px,1fr));        
+    }
 }
