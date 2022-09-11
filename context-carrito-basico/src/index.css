@@ -21,8 +21,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #fafafa;
-  cursor: pointer;
-  transition: outline 0.1s linear;
+  cursor: pointer;  
   background:white;
   border:1px solid lightblue;
 }

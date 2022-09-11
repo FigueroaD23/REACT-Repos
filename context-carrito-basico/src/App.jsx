@@ -1,14 +1,19 @@
 import ProductoLista from "./components/ProductosLista";
+import Carrito from "./components/Carrito";
 import './App.css'
+import { CartProvider } from "./Context/CarritoContex";
 
-function App() {  
+function App() {
 
   return (
-    <div className="container-main">
-      <div className="container-producto">
-        <ProductoLista></ProductoLista>
+    <CartProvider>
+      <div className="container-main">
+        <div className="container-producto">
+          <Carrito />
+          <ProductoLista />
+        </div>
       </div>
-    </div>
+    </CartProvider>
   )
 }
 
