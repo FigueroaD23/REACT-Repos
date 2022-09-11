@@ -1,15 +1,16 @@
 import { useContext } from "react";
 import CarritoContext from "../Context/CarritoContex";
-
 const Producto = ({id,nombre, precio,color,imgsrc,cantidad}) => {
   const {carritoBD,setCarritoBD} = useContext(CarritoContext)
-  const {database,setDatabase} = useContext(CarritoContext)
+  const {database,setDatabase} = useContext(CarritoContext)    
   
   const handleClick = ()=>{
+    const productoStock = database.find((item)=>item.id === id)
+    console.log(productoStock)
     const producto = {
       id,nombre,precio,color,imgsrc,cantidad:1
     };
-    console.log(producto)    
+    //console.log(producto)    
     
     if(!carritoBD.hasOwnProperty(producto.id)){   
       console.log("primera vez")         
@@ -19,7 +20,7 @@ const Producto = ({id,nombre, precio,color,imgsrc,cantidad}) => {
       setCarritoBD(carrito)
       return
     }
-    if(carritoBD.hasOwnProperty(producto.id) && carritoBD[producto.id].cantidad < 6){
+    if(carritoBD.hasOwnProperty(producto.id) && carritoBD[producto.id].cantidad < productoStock.cantidad){
       console.log("segunda vez")
       const carrito = {...carritoBD}  
       producto.cantidad = carrito[producto.id].cantidad + 1;
